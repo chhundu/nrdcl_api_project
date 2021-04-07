@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using NRDCL.Models.Cus;
+using NRDCL_API.Data;
 
 namespace NRDCL_API.Contollers
 {
@@ -7,11 +9,28 @@ namespace NRDCL_API.Contollers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly ICustomerService customerService;
+        public HomeController(ICustomerService service)
         {
-            return new string[] { "this", "is", "hard", "coded" };
+            customerService = service;
         }
 
+        [HttpGet]
+        public ActionResult<IEnumerable<Customer>> GetCustomerList()
+        {
+            var customerList = customerService.GetCustomerList();
+            return Ok(customerList);
+        }
+
+        [HttpGet("{CitizenshipID}")]
+        public ActionResult<IEnumerable<Customer>> GetCustomerDetail(string CitizenshipID)
+        {
+            var customer = customerService.GetCustomerDetails(CitizenshipID);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            return Ok(customer);
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NRDCL.Models
+namespace NRDCL.Models.Cus
 {
     public class Customer
     {
@@ -22,5 +22,8 @@ namespace NRDCL.Models
 
         [Display(Name = "Email ID")]
         public string EmailId { get; set; }
+
+        [NotMapped]
+        public string CMDstatus { get; set; }
     }
 }
