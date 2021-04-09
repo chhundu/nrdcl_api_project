@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using NRDCL.Models.Cus;
+using NRDCL_API.Models.Cus;
 
 namespace NRDCL_API.Data
 {

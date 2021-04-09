@@ -6,6 +6,9 @@ using NRDCL_API.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using NRDCL_API.Data.Cus;
+using AutoMapper;
+using System;
 
 namespace NRDCL_API
 {
@@ -28,6 +31,7 @@ namespace NRDCL_API
             services.AddDbContext<NRDCL_API_DB_Context>(opt => opt.UseNpgsql
 (builder.ConnectionString));
             services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICustomerService, CustomerService>();
         }
 

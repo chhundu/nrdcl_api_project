@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NRDCL.Models.Common
+namespace NRDCL_API.DTOs.Common
 {
     public class ResponseMessage
     {

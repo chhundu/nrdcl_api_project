@@ -1,5 +1,6 @@
-﻿using NRDCL.Models.Cus;
-using NRDCL.Models.Common;
+﻿using NRDCL_API.Data.Cus;
+using NRDCL_API.DTOs.Common;
+using NRDCL_API.Models.Cus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace NRDCL_API.Data
             return dataBaseContext.Customer_Table.ToList();
         }
 
-        public ResponseMessage DeleteCustomer(string CitizenshipID)
+        public void DeleteCustomer(Customer customer)
         {
             ResponseMessage responseMessage = new ResponseMessage();
             // var customer=GetCustomerDetails(CitizenshipID);
@@ -45,7 +46,13 @@ namespace NRDCL_API.Data
             // dataBaseContext.SaveChanges();
             // responseMessage.Status = true;
             // responseMessage.Text = CommonProperties.deleteSuccessMsg;
-            return responseMessage;
+            //return responseMessage;
+
+            if (customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
+            dataBaseContext.Customer_Table.Remove(customer);
         }
 
         public async Task<bool> IsCustomerExist(string citizenshipID)
@@ -54,10 +61,10 @@ namespace NRDCL_API.Data
             // return await Task.FromResult(dataBaseContext.Customer_Table.Any(x => x.CitizenshipID.Equals(citizenshipID)));
         }
 
-        public async Task<ResponseMessage> SaveCustomer(Customer customer)
+        public void SaveCustomer(Customer customer)
         {
 
-            ResponseMessage responseMessage = new ResponseMessage();
+            // ResponseMessage responseMessage = new ResponseMessage();
 
             // if (IsCustomerExist(customer.CitizenshipID).Result)
             // {
@@ -72,10 +79,15 @@ namespace NRDCL_API.Data
             // responseMessage.Status = true;
             // responseMessage.Text = CommonProperties.saveSuccessMsg;
 
-            return await Task.FromResult(responseMessage);
+            // return await Task.FromResult(responseMessage);
+
+            if (customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
         }
 
-        public async Task<ResponseMessage> UpdateCustomer(Customer customer)
+        public void UpdateCustomer(Customer customer)
         {
             ResponseMessage responseMessage = new ResponseMessage();
             // try
@@ -99,7 +111,12 @@ namespace NRDCL_API.Data
             // }
             // responseMessage.Status = true;
             // responseMessage.Text = CommonProperties.updateSuccessMsg;
-            return await Task.FromResult(responseMessage);
+            //return await Task.FromResult(responseMessage);
+        }
+
+        public bool SaveChanges()
+        {
+            return (dataBaseContext.SaveChanges() >= 0);
         }
     }
 }

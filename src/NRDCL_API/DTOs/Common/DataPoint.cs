@@ -1,7 +1,7 @@
 using System.Runtime.Serialization;
 using System;
 
-namespace NRDCL.Models.Common
+namespace NRDCL_API.DTOs.Common
 {
     //DataContract for Serializing Data - required to serve in JSON format
     [DataContract]

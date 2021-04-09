@@ -1,17 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NRDCL_API.Models.Cus
+namespace NRDCL_API.DTOs.Cus
 {
-    public class Customer
+    public class UpdateCustomerDTO
     {
-        [Key]
-        [Required(ErrorMessage = "Citizenship ID is mendatory.")]
-        [Display(Name = "Citizenship ID")]
-        public string CitizenshipID { get; set; }
-
         [Required(ErrorMessage = "Customer name is mendatory.")]
         [Display(Name = "Customer Name")]
         public string CustomerName { get; set; }
@@ -22,8 +15,5 @@ namespace NRDCL_API.Models.Cus
 
         [Display(Name = "Email ID")]
         public string EmailId { get; set; }
-
-        [NotMapped]
-        public string CMDstatus { get; set; }
     }
 }

@@ -1,17 +1,18 @@
-﻿using NRDCL.Models.Cus;
-using NRDCL.Models.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using NRDCL_API.DTOs.Common;
+using NRDCL_API.Models.Cus;
 
-namespace NRDCL_API.Data
+namespace NRDCL_API.Data.Cus
 {
     public interface ICustomerService
     {
+        bool SaveChanges();
         IEnumerable<Customer> GetCustomerList();
         Customer GetCustomerDetails(string CitizenshipID);
         Task<bool> IsCustomerExist(string citizenshipID);
-        Task<ResponseMessage> SaveCustomer(Customer customer);
-        Task<ResponseMessage> UpdateCustomer(Customer customer);
-        ResponseMessage DeleteCustomer(string citizenshipID);
+        void SaveCustomer(Customer customer);
+        void UpdateCustomer(Customer customer);
+        void DeleteCustomer(Customer customer);
     }
 }
