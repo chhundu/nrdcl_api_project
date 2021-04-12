@@ -7,6 +7,7 @@ using NRDCL_API.Models.Cus;
 
 namespace NRDCL_API.Contollers
 {
+    //Change
     [Route("api/[controller]")]
     [ApiController]
     public class HomeController : ControllerBase
